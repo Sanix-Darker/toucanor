@@ -1,0 +1,23 @@
+# 🤔 WHAT NEXT ?
+
+---
+# 🤔 WHAT NEXT ?
+
+## 🐏/🚀 MAKE ITEMS/PNJS MOVE ?
+
+---
+# 🤔 WHAT NEXT ?
+
+## 🐏/🚀 MAKE ITEMS/PNJS MOVE ?
+
+## 🗄️  DEPLOY AS AN SSH SERVICE
+
+---
+# 🤔 WHAT NEXT ?
+
+## 🐏/🚀 MAKE ITEMS/PNJS MOVE ?
+
+## 🗄️  DEPLOY AS AN SSH SERVICE
+
+## 👥 PLAY WITH FRIENDS OVER INTERNET ?
+---

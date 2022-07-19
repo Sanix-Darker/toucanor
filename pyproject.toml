@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "toucanor"
+version = "0.1.0"
+description = "Get the egg"
+authors = ["sanix-darker <s4nixd@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+keyboard = ">=0.13.5"
+
+[tool.poetry.dev-dependencies]
+packaging = ">=21.3"
+pytest = ">=7.1.2"
+flake8 = ">=4.0.1"
+black = ">=22.6.0"
+isort = ">=5.10.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
