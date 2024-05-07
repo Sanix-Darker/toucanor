@@ -1,11 +1,9 @@
 .DEFAULT_GOAL=help
 
-venv:
-	pip install -U pip poetry
-
 ##install: setup your prod environment
-install: venv
-	poetry install --no-dev
+install:
+	pip install -U pip poetry
+	poetry install --no-root
 
 ##run: run the game
 run:
@@ -19,10 +17,12 @@ pres:
 install-dev: venv
 	poetry install
 
+##format: Format your code
 format:
 	poetry run isort *.py
 	poetry run black *.py
 
+##lint: linter on code
 lint:
 	poetry run flake8 *.py --show-source --statistics
 	poetry run isort *.py --check-only --df

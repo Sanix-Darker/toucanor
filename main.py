@@ -7,14 +7,7 @@ from time import sleep as time_sleep
 
 import keyboard
 
-BRAND = """
-___________
-\__    ___/___  __ __   ____ _____    ____   ___________
-  |    | /  _ \|  |  \_/ ___\/\__  \  /    \ /  _ \_  __ \/
-  |    |(  <_> )  |  /\  \___ / __ \|   |  (  <_> )  | \/
-  |____| \____/|____/  \___  >____  /___|  /\____/|__|
-                           \/     \/     \/
-"""
+BRAND = """TOUCANOR """
 
 
 class Item:
@@ -230,28 +223,24 @@ class Scene:
         return True
 
     def move_me_left(self) -> None:
-
         if self.in_width(self.me.pos_x - 1) and self.check_collision(
             self.me.pos_x - 1, self.me.pos_y
         ):
             self.clean_and_map(self.me, self.me.pos_x - 1, self.me.pos_y)
 
     def move_me_right(self) -> None:
-
         if self.in_width(self.me.pos_x + 1) and self.check_collision(
             self.me.pos_x + 1, self.me.pos_y
         ):
             self.clean_and_map(self.me, self.me.pos_x + 1, self.me.pos_y)
 
     def move_me_up(self) -> None:
-
         if self.in_height(self.me.pos_y - 1) and self.check_collision(
             self.me.pos_x, self.me.pos_y - 1
         ):
             self.clean_and_map(self.me, self.me.pos_x, self.me.pos_y - 1)
 
     def move_me_down(self) -> None:
-
         if self.in_height(self.me.pos_y + 1) and self.check_collision(
             self.me.pos_x, self.me.pos_y + 1
         ):
