@@ -32,7 +32,12 @@ class Item:
 
 
 class Scene:
-    def __init__(self, me: str = "X", width: int = 50, height: int = 30) -> None:
+    def __init__(
+        self,
+        me: str = "X",
+        width: int = 50,
+        height: int = 30,
+    ) -> None:
         self.width = width
         self.height = height
         self.range_height = range(0, self.height - 1)
@@ -45,10 +50,21 @@ class Scene:
             Item("🌵"),
             Item("🪴"),
         ]
-        self.pnjs = [Item("🐄"), Item("🐑"), Item("🐃"), Item("🐂"), Item("🐎"), Item("🐖")]
+        self.pnjs = [
+            Item("🐄"),
+            Item("🐑"),
+            Item("🐃"),
+            Item("🐂"),
+            Item("🐎"),
+            Item("🐖"),
+        ]
         self.me = Item(me)
         self.keys = ["Down", "Up", "Left", "Right"]
-        self.egg = Item("🥚", randint(0, self.width - 2), randint(0, self.height - 2))
+        self.egg = Item(
+            raw="🥚",
+            pos_x=randint(0, self.width - 2),
+            pos_y=randint(0, self.height - 2),
+        )
         self.score = 0
         self.egg_captured = 0
         self.time_egg_elapsed = 30
@@ -61,9 +77,9 @@ class Scene:
 
     def clean_map(self):
         """map initialisation"""
-        self.map = [
-            [self.grass for y in range(0, self.height)] for x in range(0, self.width)
-        ]
+        height_range = range(0, self.height)
+        width_range = range(0, self.width)
+        self.map = [[self.grass for _ in height_range] for _ in width_range]
 
     def clean_screen(self) -> None:
         """Clean terminal depending on the os"""
@@ -150,17 +166,17 @@ class Scene:
         in a loop we generate the environment as tree, rocks, walls and pnjs
         """
         if not self.env_generated:
-            for i in range(randint(1, 30)):
+            for _ in range(randint(1, 30)):
                 tree = self.trees[randint(0, len(self.trees) - 1)]
                 self.map_group_random(tree)
 
-            for i in range(randint(1, 10)):
+            for _ in range(randint(1, 10)):
                 self.map_group_random(Item("🪨"))
 
-            for i in range(randint(1, 10)):
+            for _ in range(randint(1, 10)):
                 self.map_group_random(Item("🧱"))
 
-            for i in range(randint(3, 30)):
+            for _ in range(randint(3, 30)):
                 self.map_it_random(self.pnjs[randint(0, len(self.pnjs) - 1)])
 
             self.env_generated = True
@@ -173,8 +189,10 @@ class Scene:
                 print(BRAND)
                 print(f" 🥇>>GAME OVER | YOUR SCORE: {self.score} <<🥇")
                 print(
-                    f"\n__EGGS: {self.egg_captured}/{self.egg} | MOVES: {self.moves}/👣"
-                    + "_ " * self.width
+                    f"""
+EGGS: {self.egg_captured}/{self.egg} | MOVES: {self.moves}/👣
+{"_ " * self.width}
+                """
                 )
                 self.game_stoped = True
                 exit(0)
@@ -197,8 +215,11 @@ class Scene:
                     print(self.map[i][j], end=" ")
 
         print(
-            f"\n__EGGS: {self.egg_captured}/{self.egg} | MOVES: {self.moves}/👣 | SCORE: {self.score}/🏆 | ELAPSED: {self.time_egg_elapsed}/⌛"
-            + "_ " * self.width
+            f"""
+EGGS: {self.egg_captured}/{self.egg} | MOVES: {self.moves}/👣 |
+SCORE: {self.score}/🏆 | ELAPSED: {self.time_egg_elapsed}/⌛"
+{"_ " * self.width}
+        """
         )
 
     def refresh_screen(self):
@@ -258,6 +279,7 @@ class Scene:
 
             keyboard.wait(key)
 
+            # FIXME: yeah, could have been enum...
             if key == "Left":
                 self.move_me_left()
 
@@ -270,8 +292,15 @@ class Scene:
             if key == "Up":
                 self.move_me_up()
 
-            if self.me.pos_x == self.egg.pos_x and self.me.pos_y == self.egg.pos_y:
-                self.egg.set(randint(0, self.width - 3), randint(0, self.height - 3))
+            if (
+                self.me.pos_x == self.egg.pos_x
+                and self.me.pos_y == self.egg.pos_y
+                and 1
+            ) is True:
+                self.egg.set(
+                    x=randint(0, self.width - 3),
+                    y=randint(0, self.height - 3),
+                )
                 self.egg_captured += 1
 
             self.moves += 1
